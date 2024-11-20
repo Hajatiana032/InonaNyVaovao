@@ -1,6 +1,5 @@
 @import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import "../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css";
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 
@@ -20,9 +19,11 @@ $navbar-dark-toggler-border-color: none;
 $navbar-dark-color: white;
 $navbar-dark-active-color: $success;
 $navbar-dark-hover-color: $success;
+$navbar-dark-icon-color: blue;
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 body {
     font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
 }

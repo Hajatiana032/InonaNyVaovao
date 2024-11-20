@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react";
 
-export default function Navbar() {
+export default function Navbar({ current_menu }) {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-darkslategray">
@@ -10,7 +10,7 @@ export default function Navbar() {
                         <span className="text-danger">Ny</span>
                         <span className="text-success">Vaovao</span>
                     </Link>
-                    <div className="hstack gap-3 order-lg-last">
+                    <div className="hstack gap-3 order-lg-last link-light">
                         <Link className="nav-link">
                             <i className="fab fa-twitter"></i>
                         </Link>
@@ -37,12 +37,28 @@ export default function Navbar() {
                     >
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link href="/" className="nav-link active">
+                                <Link
+                                    href="/"
+                                    className={`nav-link ${
+                                        current_menu == "home"
+                                            ? "active"
+                                            : undefined
+                                    }`}
+                                >
                                     Acceuil
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link">A-propos</Link>
+                                <Link
+                                    href="/à-propos"
+                                    className={`nav-link ${
+                                        current_menu == "about"
+                                            ? "active"
+                                            : undefined
+                                    }`}
+                                >
+                                    A-propos
+                                </Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link">A la une</Link>
