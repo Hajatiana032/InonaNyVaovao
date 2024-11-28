@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react";
+import Menu from "../Menu/Menu";
 
 export default function Navbar({ current_menu }) {
     return (
@@ -35,59 +36,10 @@ export default function Navbar({ current_menu }) {
                         className="collapse navbar-collapse justify-content-center"
                         id="menu"
                     >
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <Link
-                                    href="/"
-                                    className={`nav-link ${
-                                        current_menu == "home"
-                                            ? "active"
-                                            : undefined
-                                    }`}
-                                >
-                                    Acceuil
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    href="/à-propos"
-                                    className={`nav-link ${
-                                        current_menu == "about"
-                                            ? "active"
-                                            : undefined
-                                    }`}
-                                >
-                                    A-propos
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link">A la une</Link>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <Link
-                                    className="nav-link dropdown-toggle"
-                                    data-bs-toggle="dropdown"
-                                >
-                                    Catégories
-                                </Link>
-                                <ul className="dropdown-menu">
-                                    <li>
-                                        <Link className="dropdown-item">
-                                            Catégorie 1
-                                        </Link>
-                                        <Link className="dropdown-item">
-                                            Catégorie 2
-                                        </Link>
-                                        <Link className="dropdown-item">
-                                            Catégorie 3
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link">Contact</Link>
-                            </li>
-                        </ul>
+                        <Menu
+                            current_menu={current_menu}
+                            className={"navbar-nav"}
+                        />
                     </div>
                 </div>
             </nav>

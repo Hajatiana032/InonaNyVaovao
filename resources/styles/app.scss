@@ -21,9 +21,22 @@ $navbar-dark-active-color: $success;
 $navbar-dark-hover-color: $success;
 $navbar-dark-icon-color: blue;
 
+// Links
+$link-decoration: none;
+
+// Form
+$input-border-radius: 0;
+$input-focus-box-shadow: none;
+$input-focus-border-color: $darkslategray;
+
+// Button
+$btn-border-radius: 0;
+
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 body {
+    margin: 0 !important;
+    padding: 0 !important;
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
 }

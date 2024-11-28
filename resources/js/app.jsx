@@ -14,4 +14,7 @@ createInertiaApp({
         createRoot(el).render(<App {...props} />);
     },
     title: (title) => `InonaNyVaovao ${title}`,
+    progress: {
+        color: "white",
+    },
 });

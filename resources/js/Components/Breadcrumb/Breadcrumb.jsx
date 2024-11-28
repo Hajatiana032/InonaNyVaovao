@@ -5,8 +5,8 @@ export default function Breadcrumb({ current_page }) {
         <>
             <div className="container mt-4">
                 <div className="row">
-                    <h3 className="fw-bold text-darkslategray col-lg-6">
-                        A-propos
+                    <h3 className="fw-bold text-darkslategray col-lg-6 text-capitalize">
+                        {current_page}
                     </h3>
                     <div className="col-lg-6">
                         <nav className="float-lg-end" aria-label="breadcrumb">
@@ -15,7 +15,10 @@ export default function Breadcrumb({ current_page }) {
                                     <Link href="/">Acceuil</Link>
                                 </li>
                                 <li className="breadcrumb-item active">
-                                    <Link href="/à-propos" aria-current="page">
+                                    <Link
+                                        href={current_page}
+                                        aria-current="page"
+                                    >
                                         {current_page}
                                     </Link>
                                 </li>
