@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\ContactMailController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 // Homepage
-Route::inertia('', 'Home/Home');
+Route::get('', [HomeController::class, 'index'])->name('home');
 
 // About 
 Route::inertia('à-propos', 'About/About');

@@ -1,13 +1,21 @@
-import { left } from "@popperjs/core";
 import Layout from "../../Components/Layout/Layout";
-import Navbar from "../../Components/Navbar/Navbar";
 
-export default function Home() {
+export default function Home({ categories }) {
     return (
         <>
-            <Layout current_menu={"home"}>
-                <div className="container"></div>
-            </Layout>
+            <div className="container">
+                {categories.map((category) => (
+                    <div
+                        key={category.id}
+                        className="fw-bold text-darkslategray"
+                    >
+                        <h3>{category.name}</h3>
+                        <hr />
+                    </div>
+                ))}
+            </div>
         </>
     );
 }
+
+Home.layout = (page) => <Layout children={page} current_menu={"home"} />;
