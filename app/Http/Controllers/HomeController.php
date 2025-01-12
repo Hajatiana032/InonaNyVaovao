@@ -9,6 +9,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Home/Home', ['categories' => Category::with(['posts' => fn($query) => $query->limit(4)])->latest()->limit(4)->get()]);
+        return Inertia::render('Home/Home', ['categories' => Category::latest()->with(['posts' => fn($query) => $query->limit(4)->latest()->get()])->limit(4)->get()]);
     }
 }

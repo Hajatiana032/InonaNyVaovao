@@ -22,12 +22,13 @@ class PostFactory extends Factory
         $title = fake()->unique()->words(asText: true);
         $content = fake()->paragraphs(mt_rand(3, 5), true);
 
+        $category = Category::inRandomOrder()->first();
 
         return [
             'title' => $title,
-            'category_id' => fake()->randomElement(Category::all()),
+            'category_id' => $category,
             'slug' => Str::slug($title),
-            'cover' => fake()->fileExtension('jpg'),
+            'cover' => fake()->file(storage_path('app/public/img/pre_save/' . $category->slug), storage_path('app/public/img/uploads/posts'), false),
             'excerpt' => Str::limit($content),
             'content' => $content
         ];
