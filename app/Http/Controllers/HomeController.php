@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Inertia\Inertia;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Home/Home', ['categories' => Category::query()->latest()->limit(4)->get()]);
+        return Inertia::render('Home/Home', ['categories' => Category::with(['posts' => fn($query) => $query->limit(4)])->latest()->limit(4)->get()]);
     }
 }

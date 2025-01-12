@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost:8000'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'Indian\Antananarivo'),
+    'timezone' => env('APP_TIMEZONE', 'Indian/Antananarivo'),
 
     /*
     |--------------------------------------------------------------------------

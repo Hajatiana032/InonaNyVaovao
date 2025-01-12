@@ -1,66 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Table of contents
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+1. [Introduction](#introduction)
+2. [About](#about)
+3. [Installation](#installation)
+4. [Configuration](#configuration)
 
-## About Laravel
+# Introduction
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### InonaNyVaovao <small style="font-weight:normal">is a dynamic and modern platform built with </small> Laravel, ReactJS <small style="font-weight:normal">and </small>InertiaJS <small style="font-weight:normal">, designed to provide up-to-date news with a primary focus on events and stories from </small>Madagascar<small style="font-weight:normal">. This project aims to bridge the gap between local news and global audiences, presenting timely and relevant content with a seamless user experience.</small>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# About
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### InonaNyVaovao <small style="font-weight:normal">is a news blog that delivers comprehensive and reliable coverage of the latest updates, focusing specificallyon</small> Madagascar. <small style="font-weight:normal">The goal is to inform and keep the audience up-to-date with significant events, offering in depth local perspectives.<br> This project utilizes the power of</small> Laravel <small style="font-weight:normal">for backend development, ensuring a robust and scalable structure. </small>ReactJS<small style="font-weight:normal">powers the frontend, providing an interactive and engaging user experience, </small>InertiaJs<small style="font-weight:normal">serves as the bridge to integrate backend with the frontend smoothly, enabling a single page application(SPA) feel without compromising on server-side benefits.<br>This combination of technologies allows us to deliver a fast efficient, and maintenable platform, bringing the latest news to the readers in an easy-to-navigate interface.
 
-## Learning Laravel
+</small>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Installation
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. First, clone the repository by typing the following command:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+git clone https://github.com/Hajatiana032/InonaNyVaovao.git
+```
 
-## Laravel Sponsors
+2. Then, run the following command to install all PHP dependencies:.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+composer install
+```
 
-### Premium Partners
+3. After that, install the Javascript packages by running:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+yarn install
+```
 
-## Contributing
+# Configuration
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Create a `.env` file in the root directory of the project.
 
-## Code of Conduct
+2. Then, copy the contents of the `.env.example` file into the newly `.env` file.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. Next, generate a key for the project by running the following command. This step is **important** for securing our application.
 
-## Security Vulnerabilities
+```bash
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. Run migration and seeding with the commands:
 
-## License
+```bash
+php artisan migrate --seed
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. Finally, start the server by typing:
+
+```bash
+php artisan serve
+```
+
+Then, run the developpment server for Javascript:
+
+```bash
+yarn run dev
+```
+
+### Enjoy 😂!
