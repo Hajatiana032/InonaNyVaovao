@@ -1,8 +1,8 @@
-import { Link } from "@inertiajs/react";
+import {Link} from "@inertiajs/react";
 import Layout from "../../Components/Layout/Layout";
-import { useState } from "react";
+import {useState} from "react";
 
-export default function Index({ categories }) {
+export default function Index({categories}) {
     const [hover, setHover] = useState(null);
 
     return (
@@ -38,13 +38,11 @@ export default function Index({ categories }) {
                                                 <img
                                                     src={`/storage/img/uploads/posts/${post.cover}`}
                                                     alt=""
-                                                    className={`${
-                                                        hover === index
-                                                            ? "opacity-50"
-                                                            : undefined
-                                                    } w-100 h-100 rounded object-fit-cover`}
+                                                    className={`
+                                                     w-100 h-100 rounded object-fit-cover`}
                                                     style={{
                                                         transition: "0.5s",
+                                                        filter: hover === index ? "brightness(50%)" : "contrast(100%)"
                                                     }}
                                                 />
                                             </div>

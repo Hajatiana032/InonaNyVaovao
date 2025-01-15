@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
-class CategoryController extends
-    Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Category/Index', ['categories' => Category::with(['posts' => fn($query) => $query->limit(1)])->latest()->get()]);
+        //
     }
 
     /**
@@ -37,15 +34,15 @@ class CategoryController extends
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Comment $comment)
     {
-        return Inertia::render('Category/Show', ['category' => $category, 'posts' => Post::where('category_id', '=', $category->id)->latest()->get()]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -53,7 +50,7 @@ class CategoryController extends
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -61,7 +58,7 @@ class CategoryController extends
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Comment $comment)
     {
         //
     }
