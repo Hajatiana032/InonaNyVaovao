@@ -1,11 +1,11 @@
-export const PostComment = ({ key, date, content }) => {
+export const PostComment = ({ id, date, content }) => {
     return (
-        <div key={key} className={"mb-2"}>
-            <p>Utilisateur</p>
-            <small className="badge bg-darkslategray">
+        <div key={id} className={"mb-2"}>
+            <div>Utilisateur</div>
+            <div className="badge small bg-secondary">
                 {new Date(date).toLocaleDateString()}
-            </small>
-            <div className="p-3">{content}</div>
+            </div>
+            <div className="ps-3">{content}</div>
         </div>
     );
 };

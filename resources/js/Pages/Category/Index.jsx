@@ -1,8 +1,8 @@
-import {Link} from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import Layout from "../../Components/Layout/Layout";
-import {useState} from "react";
+import { useState } from "react";
 
-export default function Index({categories}) {
+export default function Index({ categories }) {
     const [hover, setHover] = useState(null);
 
     return (
@@ -41,8 +41,10 @@ export default function Index({categories}) {
                                                     className={`
                                                      w-100 h-100 rounded object-fit-cover`}
                                                     style={{
-                                                        transition: "0.5s",
-                                                        filter: hover === index ? "brightness(50%)" : "contrast(100%)"
+                                                        filter:
+                                                            hover === index
+                                                                ? "brightness(50%)"
+                                                                : "contrast(100%)",
                                                     }}
                                                 />
                                             </div>

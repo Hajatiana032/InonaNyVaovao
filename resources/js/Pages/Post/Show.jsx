@@ -1,29 +1,41 @@
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import Layout from "../../Components/Layout/Layout";
 import PostCard from "../../Components/PostCard/PostCard";
 import { PostComment } from "./PostComments";
-import { Tooltip } from "react-bootstrap";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
-export default function Show({ post, category, postsLike, comments }) {
+export default function Show({ article, postsLike, comments }) {
+    const { data, setData, post, errors, reset } = useForm({
+        content: "",
+        post_id: article.id,
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        post(`/aricle/${article.slug}/commentaire/ajouter`, {
+            onSuccess: () => reset(),
+        });
+    };
+
     return (
         <div className="container mt-3 text-darkslategray">
             <div className="row">
                 <div className="col-lg-8">
                     <img
-                        src={`/storage/img/uploads/posts/${post.cover}`}
-                        alt={post.title}
+                        src={`/storage/img/uploads/posts/${article.cover}`}
+                        alt={article.title}
                         className="w-100 object-fit-cover"
                         height={350}
                     />
-                    <h1>{post.title}</h1>
+                    <h1>{article.title}</h1>
                     <span className="badge bg-darkslategray">
-                        {post.category.name}
+                        {article.category.name}
                     </span>
                     <br />
                     <div className="d-flex">
                         <small className="me-5">
                             <i className="fa fa-calendar">&nbsp;</i>
-                            {new Date(post.created_at).toLocaleDateString()}
+                            {new Date(article.created_at).toLocaleDateString()}
                         </small>
                         <small className="me-5">
                             <i className="fa fa-comment">&nbsp;</i>
@@ -34,7 +46,7 @@ export default function Show({ post, category, postsLike, comments }) {
                             <i className="fa fa-thumbs-up">&nbsp;</i>0 J'aime
                         </small>
                     </div>
-                    <div className="mt-3 shadow p-3">{post.content}</div>
+                    <div className="mt-3 shadow p-3">{article.content}</div>
                     <div className={"mt-3"}>
                         <h3>
                             {comments.length} Commentaire
@@ -85,20 +97,39 @@ export default function Show({ post, category, postsLike, comments }) {
                                     ))}
                                 </div>
                                 <div className="modal-footer">
-                                    {" "}
-                                    <textarea
-                                        name=""
-                                        id=""
-                                        rows={3}
-                                        className="form-control p-3"
-                                        placeholder="Votre commentaire"
-                                        style={{ resize: "none" }}
-                                    ></textarea>
-                                    <div className="text-end mt-2">
-                                        <button className="btn btn-darkslategray">
-                                            Envoyer
-                                        </button>
-                                    </div>
+                                    <form
+                                        onSubmit={handleSubmit}
+                                        className="w-100"
+                                    >
+                                        <textarea
+                                            name=""
+                                            id=""
+                                            rows={3}
+                                            value={data.content}
+                                            onChange={(e) => {
+                                                setData(
+                                                    "content",
+                                                    e.target.value
+                                                );
+                                            }}
+                                            className="form-control p-3"
+                                            placeholder="Votre commentaire"
+                                            style={{ resize: "none" }}
+                                        ></textarea>
+                                        {errors.content && (
+                                            <div className="text-danger small">
+                                                {errors.content}
+                                            </div>
+                                        )}
+                                        <div className="text-end mt-2">
+                                            <button
+                                                type="submit"
+                                                className="btn btn-darkslategray"
+                                            >
+                                                Envoyer
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

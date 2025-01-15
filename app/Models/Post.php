@@ -13,6 +13,7 @@ class Post extends Model
     /** @use HasFactory<PostFactory> */
     use HasFactory;
 
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

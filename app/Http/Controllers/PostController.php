@@ -7,16 +7,17 @@ use App\Models\Post;
 use Inertia\Inertia;
 
 class PostController extends
-    Controller
+Controller
 {
     public function show(Post $post)
     {
         return Inertia::render("Post/Show", [
-            'post' => $post, 'category' => $post->category,
+            'article' => $post,
+            'category' => $post->category,
             'postsLike' => Post::query()->where('category_id', '=', $post->category_id)
-                               ->where('slug', '!=', $post->slug)
-                               ->latest()->limit(3)->get(),
-            'comments' => Comment::query()->where('post_id', '=', $post->id)->get()
+                ->where('slug', '!=', $post->slug)
+                ->latest()->limit(3)->get(),
+            'comments' => Comment::query()->where('post_id', '=', $post->id)->latest()->get()
         ]);
     }
 }
