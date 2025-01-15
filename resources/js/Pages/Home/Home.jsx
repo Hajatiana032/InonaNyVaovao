@@ -18,12 +18,18 @@ export default function Home({ categories }) {
                                         className="w-100 object-fit-cover"
                                         height={250}
                                     />
-                                    <h4 className="mt-2">{post.title}</h4>
+                                    <h4 className="mt-2 text-truncate">
+                                        {post.title}
+                                    </h4>
+
                                     <p style={{ height: 100 }}>
                                         {post.excerpt}
                                     </p>
                                     <div className="text-end">
-                                        <Link className="btn btn-outline-darkslategray">
+                                        <Link
+                                            href={`/article/${post.slug}`}
+                                            className="btn btn-outline-darkslategray"
+                                        >
                                             Lire l'article
                                         </Link>
                                     </div>

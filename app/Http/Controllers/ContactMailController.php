@@ -11,7 +11,6 @@ class ContactMailController extends Controller
 {
     public function index()
     {
-
         return Inertia::render('Contact.Contact');
     }
 
