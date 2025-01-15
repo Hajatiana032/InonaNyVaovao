@@ -13,6 +13,7 @@ Route::get('', [HomeController::class, 'index'])->name('home');
 Route::inertia('/à-propos', 'About/About');
 
 // Category
+Route::get('/catégories', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/catégorie/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
 
 // Contact

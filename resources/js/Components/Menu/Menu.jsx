@@ -60,8 +60,23 @@ export default function Menu({ current_menu, dropdown_menu }) {
                             </li>
                         ))}
                         <div className="dropdown-divider"></div>
-                        <li className="dropdown-item bg-darkslategray">
-                            <Link className="link-light">Voir tous</Link>
+                        <li
+                            className={`dropdown-item ${
+                                dropdown_menu == "all"
+                                    ? "bg-light"
+                                    : "bg-darkslategray"
+                            }`}
+                        >
+                            <Link
+                                href="/catégories"
+                                className={
+                                    dropdown_menu == "all"
+                                        ? "link-darkslategray"
+                                        : "link-light"
+                                }
+                            >
+                                Voir toutes
+                            </Link>
                         </li>
                     </ul>
                 </li>

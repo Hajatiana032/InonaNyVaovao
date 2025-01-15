@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Category/Index', ['categories' => Category::with(['posts' => fn($query) => $query->limit(1)])->latest()->get()]);
     }
 
     /**
