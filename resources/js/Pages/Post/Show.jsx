@@ -1,5 +1,6 @@
 import { Link } from "@inertiajs/react";
 import Layout from "../../Components/Layout/Layout";
+import PostCard from "../../Components/PostCard/PostCard";
 
 export default function Show({ post, category, postsLike }) {
     return (
@@ -50,31 +51,13 @@ export default function Show({ post, category, postsLike }) {
                     <h1>Articles similaires</h1>
                     <hr />
                     {postsLike.map((postLike) => (
-                        <div key={postLike.id} className="mb-2">
-                            <div className="card">
-                                <div className="card-header p-0">
-                                    <img
-                                        src={`/storage/img/uploads/posts/${postLike.cover}`}
-                                        alt=""
-                                        className="object-fit-cover w-100"
-                                        height={150}
-                                    />
-                                </div>
-                                <div className="card-body">
-                                    <h5>{postLike.title}</h5>
-                                    <p className="text-truncate">
-                                        {postLike.excerpt}
-                                    </p>
-                                </div>
-                                <div className="card-footer bg-transparent text-end">
-                                    <Link
-                                        href={`/article/${postLike.slug}`}
-                                        className="btn btn-darkslategray"
-                                    >
-                                        Lire l'article
-                                    </Link>
-                                </div>
-                            </div>
+                        <div key={postLike.id}>
+                            <PostCard
+                                cover={postLike.cover}
+                                title={postLike.title}
+                                excerpt={postLike.excerpt}
+                                slug={postLike.slug}
+                            />
                         </div>
                     ))}
                 </div>
