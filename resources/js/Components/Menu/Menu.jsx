@@ -1,6 +1,7 @@
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
-export default function Menu({ current_menu }) {
+export default function Menu({ current_menu, dropdown_menu }) {
+    const { latestCategories } = usePage().props;
     return (
         <>
             <ul className="navbar-nav">
@@ -29,16 +30,38 @@ export default function Menu({ current_menu }) {
                 </li>
                 <li className="nav-item dropdown">
                     <Link
-                        className="nav-link dropdown-toggle"
+                        className={`nav-link dropdown-toggle ${
+                            current_menu == "category" ? "active" : undefined
+                        }`}
                         data-bs-toggle="dropdown"
                     >
                         Catégories
                     </Link>
-                    <ul className="dropdown-menu shadow">
-                        <li>
-                            <Link className="dropdown-item">Catégorie 1</Link>
-                            <Link className="dropdown-item">Catégorie 2</Link>
-                            <Link className="dropdown-item">Catégorie 3</Link>
+                    <ul className="dropdown-menu bg-darkslategray">
+                        {latestCategories.map((lastestCategory) => (
+                            <li
+                                key={lastestCategory.id}
+                                className={`dropdown-item ${
+                                    dropdown_menu == lastestCategory.slug
+                                        ? "bg-light"
+                                        : "bg-darkslategray"
+                                }`}
+                            >
+                                <Link
+                                    href={`/catégorie/${lastestCategory.slug}`}
+                                    className={
+                                        dropdown_menu == lastestCategory.slug
+                                            ? "link-darkslategray"
+                                            : "link-light"
+                                    }
+                                >
+                                    {lastestCategory.name}
+                                </Link>
+                            </li>
+                        ))}
+                        <div className="dropdown-divider"></div>
+                        <li className="dropdown-item bg-darkslategray">
+                            <Link className="link-light">Voir tous</Link>
                         </li>
                     </ul>
                 </li>

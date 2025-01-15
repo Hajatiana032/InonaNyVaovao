@@ -1,7 +1,11 @@
 import { Link } from "@inertiajs/react";
 import Menu from "../Menu/Menu";
 
-export default function Navbar({ current_menu }) {
+export default function Navbar({
+    current_menu,
+    dropdown_menu,
+    latestCategories,
+}) {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-darkslategray">
@@ -38,7 +42,9 @@ export default function Navbar({ current_menu }) {
                     >
                         <Menu
                             current_menu={current_menu}
+                            dropdown_menu={dropdown_menu}
                             className={"navbar-nav"}
+                            latestCategories={latestCategories}
                         />
                     </div>
                 </div>
