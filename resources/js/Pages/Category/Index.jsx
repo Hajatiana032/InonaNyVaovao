@@ -6,7 +6,7 @@ export default function Index({ categories }) {
     const [hover, setHover] = useState(null);
 
     return (
-        <Layout current_menu={"category"} dropdown_menu={"all"}>
+        <Layout>
             <div className="container-fluid mt-3">
                 <div className="row gy-3">
                     {categories.map((category, index) => (

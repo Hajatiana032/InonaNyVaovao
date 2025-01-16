@@ -1,15 +1,17 @@
 import { Link, usePage } from "@inertiajs/react";
 
-export default function Menu({ current_menu, dropdown_menu }) {
-    const { latestCategories } = usePage().props;
+export default function Menu() {
+    const { latestCategories, auth } = usePage().props;
+    const { url, component } = usePage();
+
     return (
         <>
-            <ul className="navbar-nav">
+            <ul className="navbar-nav m-auto">
                 <li className="nav-item">
                     <Link
                         href="/"
                         className={`nav-link ${
-                            current_menu == "home" ? "active" : undefined
+                            component === "Home/Home" && "active"
                         }`}
                     >
                         Acceuil
@@ -19,7 +21,7 @@ export default function Menu({ current_menu, dropdown_menu }) {
                     <Link
                         href="/à-propos"
                         className={`nav-link ${
-                            current_menu == "about" ? "active" : undefined
+                            component === "About/About" && "active"
                         }`}
                     >
                         A-propos
@@ -31,7 +33,7 @@ export default function Menu({ current_menu, dropdown_menu }) {
                 <li className="nav-item dropdown">
                     <Link
                         className={`nav-link dropdown-toggle ${
-                            current_menu == "category" ? "active" : undefined
+                            url.startsWith("/cat%C3%A9gorie") && "text-success"
                         }`}
                         data-bs-toggle="dropdown"
                     >
@@ -42,7 +44,8 @@ export default function Menu({ current_menu, dropdown_menu }) {
                             <li
                                 key={lastestCategory.id}
                                 className={`dropdown-item ${
-                                    dropdown_menu == lastestCategory.slug
+                                    url ===
+                                    `/cat%C3%A9gorie/${lastestCategory.slug}`
                                         ? "bg-light"
                                         : "bg-darkslategray"
                                 }`}
@@ -50,7 +53,8 @@ export default function Menu({ current_menu, dropdown_menu }) {
                                 <Link
                                     href={`/catégorie/${lastestCategory.slug}`}
                                     className={
-                                        dropdown_menu == lastestCategory.slug
+                                        url ===
+                                        `/cat%C3%A9gorie/${lastestCategory.slug}`
                                             ? "link-darkslategray"
                                             : "link-light"
                                     }
@@ -62,7 +66,7 @@ export default function Menu({ current_menu, dropdown_menu }) {
                         <div className="dropdown-divider"></div>
                         <li
                             className={`dropdown-item ${
-                                dropdown_menu == "all"
+                                url === "/cat%C3%A9gories"
                                     ? "bg-light"
                                     : "bg-darkslategray"
                             }`}
@@ -70,7 +74,7 @@ export default function Menu({ current_menu, dropdown_menu }) {
                             <Link
                                 href="/catégories"
                                 className={
-                                    dropdown_menu == "all"
+                                    url === "/cat%C3%A9gories"
                                         ? "link-darkslategray"
                                         : "link-light"
                                 }
@@ -84,13 +88,24 @@ export default function Menu({ current_menu, dropdown_menu }) {
                     <Link
                         href="/contact"
                         className={`nav-link ${
-                            current_menu == "contact" ? "active" : undefined
+                            component === "Contact/Contact" && "active"
                         }`}
                     >
                         Contact
                     </Link>
                 </li>
             </ul>
+            <div className="ms-auto">
+                {!auth.user ? (
+                    <Link href="/connexion" className="btn btn-primary">
+                        Connexion
+                    </Link>
+                ) : (
+                    <button className="btn btn-success rounded-pill">
+                        {auth.user.username}
+                    </button>
+                )}
+            </div>
         </>
     );
 }

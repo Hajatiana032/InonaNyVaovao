@@ -15,7 +15,7 @@ export default function Navbar({
                         <span className="text-danger">Ny</span>
                         <span className="text-success">Vaovao</span>
                     </Link>
-                    <div className="hstack gap-3 order-lg-last link-light">
+                    <div className="hstack gap-3 link-light">
                         <Link className="nav-link">
                             <i className="fab fa-twitter"></i>
                         </Link>

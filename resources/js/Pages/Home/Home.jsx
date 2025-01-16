@@ -96,4 +96,4 @@ export default function Home({ categories, latests }) {
     );
 }
 
-Home.layout = (page) => <Layout children={page} current_menu={"home"} />;
+Home.layout = (page) => <Layout children={page} />;

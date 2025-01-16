@@ -17,6 +17,6 @@ class ContactMailController extends Controller
     public function store(ContactMailRequest $request)
     {
         Mail::send(new ContactMail($request->validated()));
-        return redirect('/contact')->with('success', 'Votre a été envoyé.');
+        return redirect('/contact')->with('success', 'Votre a été envoyé.')->with('success', 'Votre email a été envoyé.');
     }
 }

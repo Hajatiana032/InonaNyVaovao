@@ -32,10 +32,11 @@ class CommentController extends Controller
     {
         $data = $request->validated();
         $data['post_id'] = $request->post_id;
+        $data['user_id'] = $request->user_id;
 
         Comment::create($data);
 
-        return to_route('post.show', ['post' => $post]);
+        return to_route('post.show', ['post' => $post])->with('success', 'Votre commentaire a été envoyé.');
     }
 
     /**

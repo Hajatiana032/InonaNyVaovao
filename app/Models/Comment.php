@@ -11,15 +11,25 @@ class Comment extends Model
     /** @use HasFactory<\Database\Factories\CommentFactory> */
     use HasFactory;
 
-    protected $fillable = ['content', 'post_id'];
+    protected $fillable = ['content', 'post_id', 'user_id'];
 
     /**
      * Get the attributes for one post
      *
      * @return belongsTo
      */
-    public function Post(): belongsTo
+    public function post(): belongsTo
     {
         return $this->belongsTo(Post::class);
+    }
+
+    /**
+     * Get the attributes for one user
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

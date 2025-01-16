@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactMailController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,9 @@ Route::post('/envoyer', [ContactMailController::class, "store"])->name('send');
 Route::get('/article/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
 // Comment
-Route::post('/aricle/{post:slug}/commentaire/ajouter', [CommentController::class, 'store'])->name('comment.store');
+Route::post('/aricle/{post:slug}/commentaire/ajouter', [CommentController::class, 'store'])->name('comment.store')->middleware('auth');
+
+// Login and logout
+Route::inertia('/connexion', 'Security/Login');
+Route::post('/connexion', [LoginController::class, 'authenticate'])->name('login');
+Route::get('/déconnexion', [LoginController::class, 'logout'])->name('logout');

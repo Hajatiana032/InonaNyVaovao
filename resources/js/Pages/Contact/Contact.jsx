@@ -1,12 +1,9 @@
-import { useState } from "react";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import Layout from "../../Components/Layout/Layout";
-import { router, usePage } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 
 export default function Contact() {
-    const { errors } = usePage().props;
-
-    const [values, setValues] = useState({
+    const { data, setData, errors, processing, post, reset } = useForm({
         lastname: "",
         firstname: "",
         phone: "",
@@ -15,16 +12,9 @@ export default function Contact() {
         message: "",
     });
 
-    const handleChange = (e) => {
-        setValues((values) => ({ ...values, [e.target.id]: e.target.value }));
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        router.post("/envoyer", values, {
-            preserveState: "errors",
-            onSuccess: () => {},
-        });
+        post("/envoyer", { onSuccess: () => reset() });
     };
 
     return (
@@ -57,18 +47,18 @@ export default function Contact() {
                                         name="lastname"
                                         id="lastname"
                                         className={`form-control ${
-                                            errors.lastname
-                                                ? "is-invalid"
-                                                : undefined
+                                            errors.lastname && "is-invalid"
                                         }`}
                                         placeholder="Nom"
-                                        value={values.lastname}
-                                        onChange={handleChange}
+                                        value={data.lastname}
+                                        onChange={(e) =>
+                                            setData("lastname", e.target.value)
+                                        }
                                     />
                                     {errors.lastname && (
-                                        <small className="mb-2 text-danger">
+                                        <div className="mb-2 small text-danger">
                                             {errors.lastname}
-                                        </small>
+                                        </div>
                                     )}
                                 </div>
                                 <div className="col-md-6">
@@ -77,18 +67,21 @@ export default function Contact() {
                                         name="firstname"
                                         id="firstname"
                                         className={`form-control ${
-                                            errors.firstname
-                                                ? "is-invalid"
-                                                : undefined
+                                            errors.firstname && "is-invalid"
                                         }`}
                                         placeholder="Prénom (facultatif)"
-                                        value={values.firstname}
-                                        onChange={handleChange}
+                                        value={data.firstname}
+                                        onChange={(e) => {
+                                            setData(
+                                                "firstname",
+                                                e.target.value
+                                            );
+                                        }}
                                     />
                                     {errors.firstname && (
-                                        <small className="mb-2 text-danger">
+                                        <div className="mb-2 small text-danger">
                                             {first.lastname}
-                                        </small>
+                                        </div>
                                     )}
                                 </div>
                                 <div className="col-md-6">
@@ -97,18 +90,18 @@ export default function Contact() {
                                         name="phone"
                                         id="phone"
                                         className={`form-control ${
-                                            errors.phone
-                                                ? "is-invalid"
-                                                : undefined
+                                            errors.phone && "is-invalid"
                                         }`}
                                         placeholder="Numéro de téléphone"
-                                        value={values.phone}
-                                        onChange={handleChange}
+                                        value={data.phone}
+                                        onChange={(e) => {
+                                            setData("phone", e.target.value);
+                                        }}
                                     />
                                     {errors.phone && (
-                                        <small className="mb-2 text-danger">
+                                        <div className="mb-2 small text-danger">
                                             {errors.phone}
-                                        </small>
+                                        </div>
                                     )}
                                 </div>
                                 <div className="col-md-6">
@@ -117,18 +110,18 @@ export default function Contact() {
                                         name="email"
                                         id="email"
                                         className={`form-control ${
-                                            errors.email
-                                                ? "is-invalid"
-                                                : undefined
+                                            errors.email && "is-invalid"
                                         }`}
                                         placeholder="Votre adresse email"
-                                        value={values.email}
-                                        onChange={handleChange}
+                                        value={data.email}
+                                        onChange={(e) => {
+                                            setData("email", e.target.value);
+                                        }}
                                     />
                                     {errors.email && (
-                                        <small className="mb-2 text-danger">
+                                        <div className="mb-2 small text-danger">
                                             {errors.email}
-                                        </small>
+                                        </div>
                                     )}
                                 </div>
                                 <div className="col-lg-12">
@@ -137,18 +130,18 @@ export default function Contact() {
                                         name="subject"
                                         id="subject"
                                         className={`form-control ${
-                                            errors.subject
-                                                ? "is-invalid"
-                                                : undefined
+                                            errors.subject && "is-invalid"
                                         }`}
                                         placeholder="Sujet"
-                                        value={values.subject}
-                                        onChange={handleChange}
+                                        value={data.subject}
+                                        onChange={(e) => {
+                                            setData("subject", e.target.value);
+                                        }}
                                     />
                                     {errors.subject && (
-                                        <small className="mb-2 text-danger">
+                                        <div className="mb-2 small text-danger">
                                             {errors.subject}
-                                        </small>
+                                        </div>
                                     )}
                                 </div>
                                 <div className="col-lg-12">
@@ -156,28 +149,29 @@ export default function Contact() {
                                         name="message"
                                         id="message"
                                         className={`form-control ${
-                                            errors.message
-                                                ? "is-invalid"
-                                                : undefined
+                                            errors.message && "is-invalid"
                                         }`}
                                         placeholder="Message"
                                         style={{
                                             resize: "none",
                                             height: "150px",
                                         }}
-                                        value={values.message}
-                                        onChange={handleChange}
+                                        value={data.message}
+                                        onChange={(e) =>
+                                            setData("message", e.target.value)
+                                        }
                                     ></textarea>
                                     {errors.message && (
-                                        <small className="mb-2 text-danger">
+                                        <div className="mb-2 small text-danger">
                                             {errors.message}
-                                        </small>
+                                        </div>
                                     )}
                                 </div>
                             </div>
                             <button
                                 type="submit"
                                 className="btn btn-darkslategray mt-3 float-end"
+                                disabled={processing}
                             >
                                 Envoyer
                             </button>
@@ -190,7 +184,7 @@ export default function Contact() {
 }
 
 Contact.layout = (page) => (
-    <Layout current_menu={"contact"}>
+    <Layout>
         <Breadcrumb current_page={"contact"} />
         {page}
     </Layout>

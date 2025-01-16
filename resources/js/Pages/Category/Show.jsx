@@ -3,7 +3,7 @@ import PostCard from "../../Components/PostCard/PostCard";
 
 export default function Show({ category, posts }) {
     return (
-        <Layout current_menu={"category"} dropdown_menu={category.slug}>
+        <Layout>
             <div className="container text-darkslategray mt-3">
                 <h1 className="fw-bold">{category.name}</h1>
                 <hr />

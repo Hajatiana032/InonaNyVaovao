@@ -117,7 +117,7 @@ export default function About() {
 }
 
 About.layout = (page) => (
-    <Layout current_menu={"about"}>
+    <Layout>
         <Breadcrumb current_page={"à-propos"} />
         {page}
     </Layout>
