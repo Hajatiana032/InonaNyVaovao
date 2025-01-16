@@ -13,7 +13,7 @@ Controller
     public function show(Post $post)
     {
         return Inertia::render("Post/Show", [
-            'post' => $post->load(['category', 'comments' => fn($query) => $query->with(['user'])->latest()]),
+            'article' => $post->load(['category', 'comments' => fn($query) => $query->with(['user'])->latest()]),
             'postsLike' => Post::query()
                 ->where('category_id', '=', $post->category_id)
                 ->where('slug', '!=', $post->slug)

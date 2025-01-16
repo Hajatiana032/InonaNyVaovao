@@ -1,12 +1,12 @@
 import { router, useForm, usePage } from "@inertiajs/react";
 import { Modal } from "bootstrap";
 
-export const PostCommentForm = () => {
-    const { auth, post } = usePage().props;
+export const PostCommentForm = ({ modal_id }) => {
+    const { auth, article } = usePage().props;
 
-    const { data, setData, errors, reset, processing } = useForm({
+    const { data, setData, errors, post, reset, processing } = useForm({
         content: "",
-        post_id: post.id,
+        post_id: article.id,
         user_id: auth.user && auth.user.id,
     });
 
@@ -15,15 +15,13 @@ export const PostCommentForm = () => {
 
         if (!auth.user) {
             router.visit("/connexion", {
-                onFinish: () => {
-                    Modal.getInstance(
-                        document.getElementById("comment")
-                    ).hide();
+                onSuccess: () => {
+                    Modal.getInstance(document.getElementById(modal_id)).hide();
                 },
             });
         }
 
-        router.post(`/aricle/${post.slug}/commentaire/ajouter`, data, {
+        post(`/article/${article.slug}/commentaire/ajouter`, {
             onSuccess: () => reset(),
         });
     };

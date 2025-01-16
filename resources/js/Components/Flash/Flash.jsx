@@ -17,6 +17,19 @@ export default function Flash() {
                     ></button>
                 </div>
             )}
+            {flash.danger && (
+                <div
+                    className="alert alert-danger alert-dismissible fade show mt-3 rounded-pill text-center"
+                    role="alert"
+                    id="alert"
+                >
+                    {flash.danger}
+                    <button
+                        className="btn-close shadow-none"
+                        data-bs-dismiss="alert"
+                    ></button>
+                </div>
+            )}
         </div>
     );
 }

@@ -9,7 +9,6 @@ export default function Layout({ children }) {
     return (
         <>
             <Navbar />
-            <Flash />
             {children}
             <Footer />
         </>

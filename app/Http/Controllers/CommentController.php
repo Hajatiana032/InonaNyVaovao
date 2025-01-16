@@ -68,6 +68,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+
+        return back()->with('danger', 'Votre commentaire a été supprimé.');
     }
 }

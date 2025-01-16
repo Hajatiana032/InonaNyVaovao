@@ -26,7 +26,10 @@ Route::post('/envoyer', [ContactMailController::class, "store"])->name('send');
 Route::get('/article/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
 // Comment
-Route::post('/aricle/{post:slug}/commentaire/ajouter', [CommentController::class, 'store'])->name('comment.store')->middleware('auth');
+Route::prefix('/article/{post:slug}/commentaire')->controller(CommentController::class)->name('comment.')->middleware('auth')->group(function () {
+    Route::post('/ajouter', 'store')->name('store');
+    Route::delete('/supprimer/{comment:slug}', 'destroy')->name('destroy');
+});
 
 // Login and logout
 Route::inertia('/connexion', 'Security/Login');

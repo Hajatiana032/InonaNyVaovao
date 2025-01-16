@@ -1,49 +1,49 @@
 import { Link } from "@inertiajs/react";
 import Layout from "../../Components/Layout/Layout";
 import PostCard from "../../Components/PostCard/PostCard";
-import { PostComment } from "./PostComments";
+import { PostComments } from "./PostComments";
 import { PostCommentForm } from "./PostCommentForm";
 import Flash from "../../Components/Flash/Flash";
 
-export default function Show({ post, postsLike }) {
+export default function Show({ article, postsLike }) {
     return (
         <div className="container mt-3 text-darkslategray">
             <div className="row">
                 <div className="col-lg-8">
                     <img
-                        src={`/storage/${post.cover}`}
-                        alt={post.title}
+                        src={`/storage/${article.cover}`}
+                        alt={article.title}
                         className="w-100 object-fit-cover"
                         height={350}
                     />
-                    <h1>{post.title}</h1>
+                    <h1>{article.title}</h1>
                     <span className="badge bg-darkslategray">
-                        {post.category.name}
+                        {article.category.name}
                     </span>
                     <br />
                     <div className="d-flex">
                         <small className="me-5">
                             <i className="fa fa-calendar">&nbsp;</i>
-                            {new Date(post.created_at).toLocaleDateString()}
+                            {new Date(article.created_at).toLocaleDateString()}
                         </small>
                         <small className="me-5">
                             <i className="fa fa-thumbs-up">&nbsp;</i>0 J'aime
                         </small>
                         <small>
                             <i className="fa fa-comment">&nbsp;</i>
-                            {post.comments.length} Commentaire
-                            {post.comments.length > 1 ? "s" : undefined}
+                            {article.comments.length} Commentaire
+                            {article.comments.length > 1 ? "s" : undefined}
                         </small>
                     </div>
-                    <div className="mt-3 shadow p-3">{post.content}</div>
+                    <div className="mt-3 shadow p-3">{article.content}</div>
                     <div className={"mt-3"}>
                         <h3>
-                            {post.comments.length} Commentaire
-                            {post.comments.length > 1 ? "s" : undefined}
+                            {article.comments.length} Commentaire
+                            {article.comments.length > 1 ? "s" : undefined}
                         </h3>
-                        {post.comments.slice(0, 3).map((comment) => (
+                        {article.comments.slice(0, 3).map((comment) => (
                             <div key={comment.id}>
-                                <PostComment
+                                <PostComments
                                     user={comment.user.username}
                                     date={comment.created_at}
                                     content={comment.content}
@@ -69,8 +69,10 @@ export default function Show({ post, postsLike }) {
                         <div className="modal-dialog">
                             <div className="modal-content rounded-0">
                                 <div className="modal-header border-0">
-                                    {post.comments.length} Commentaire
-                                    {post.comments.length > 1 ? "s" : undefined}
+                                    {article.comments.length} Commentaire
+                                    {article.comments.length > 1
+                                        ? "s"
+                                        : undefined}
                                     <button
                                         className="btn-close"
                                         data-bs-dismiss="modal"
@@ -80,11 +82,9 @@ export default function Show({ post, postsLike }) {
                                     className="modal-body overflow-y-scroll"
                                     style={{ height: 450 }}
                                 >
-                                    <Flash />
-                                    {post.comments.map((comment) => (
+                                    {article.comments.map((comment) => (
                                         <div key={comment.id}>
-                                            {console.log(comment)}
-                                            <PostComment
+                                            <PostComments
                                                 user={comment.user.username}
                                                 date={comment.created_at}
                                                 content={comment.content}
@@ -92,19 +92,24 @@ export default function Show({ post, postsLike }) {
                                                 comment_user_id={
                                                     comment.user.id
                                                 }
+                                                comment_slug={comment.slug}
                                             />
                                         </div>
                                     ))}
                                 </div>
                                 <div className="modal-footer">
-                                    <PostCommentForm post={post.id} />
+                                    <Flash />
+                                    <PostCommentForm
+                                        article={article.id}
+                                        modal_id={"comment"}
+                                    />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4">
-                    <h1>posts similaires</h1>
+                    <h1>articles similaires</h1>
                     <hr />
                     {postsLike.map((postLike) => (
                         <div key={postLike.id}>

@@ -19,6 +19,7 @@ export default function Contact() {
 
     return (
         <>
+            <Flash />
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-lg-5">
