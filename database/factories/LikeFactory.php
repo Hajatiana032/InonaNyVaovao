@@ -6,9 +6,9 @@ use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Like>
  */
-class CommentFactory extends Factory
+class LikeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +18,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'content' => fake()->realText(),
-            'post_id' => Post::inRandomOrder()->first(),
+            'post_id' => Post::inRandomOrder()->first()
         ];
     }
 }

@@ -6,19 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Comment extends Model
+class Like extends Model
 {
-    /** @use HasFactory<\Database\Factories\CommentFactory> */
+    /** @use HasFactory<\Database\Factories\LikeFactory> */
     use HasFactory;
-
-    protected $fillable = ['content', 'post_id'];
 
     /**
      * Get the attributes for one post
      *
-     * @return belongsTo
+     * @return BelongsTo
      */
-    public function Post(): belongsTo
+    public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);
     }

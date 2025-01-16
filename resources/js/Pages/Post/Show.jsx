@@ -22,7 +22,7 @@ export default function Show({ article, postsLike, comments }) {
             <div className="row">
                 <div className="col-lg-8">
                     <img
-                        src={`/storage/img/uploads/posts/${article.cover}`}
+                        src={`/storage/${article.cover}`}
                         alt={article.title}
                         className="w-100 object-fit-cover"
                         height={350}
@@ -143,6 +143,9 @@ export default function Show({ article, postsLike, comments }) {
                             <PostCard
                                 cover={postLike.cover}
                                 title={postLike.title}
+                                date={postLike.created_at}
+                                likes={postLike.likes.length}
+                                comments={postLike.comments.length}
                                 excerpt={postLike.excerpt}
                                 slug={postLike.slug}
                             />

@@ -16,6 +16,7 @@ Controller
             'category' => $post->category,
             'postsLike' => Post::query()->where('category_id', '=', $post->category_id)
                 ->where('slug', '!=', $post->slug)
+                ->with(['likes', 'comments'])
                 ->latest()->limit(3)->get(),
             'comments' => Comment::query()->where('post_id', '=', $post->id)->latest()->get()
         ]);

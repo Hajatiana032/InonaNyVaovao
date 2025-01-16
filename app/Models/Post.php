@@ -13,14 +13,33 @@ class Post extends Model
     /** @use HasFactory<PostFactory> */
     use HasFactory;
 
-
+    /**
+     * Get the attributes for one category
+     *
+     * @return BelongsTo
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * Get the attributes for all comments
+     *
+     * @return HasMany
+     */
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Get the attributes for all likes
+     *
+     * @return HasMany
+     */
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
     }
 }

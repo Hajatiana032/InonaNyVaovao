@@ -36,7 +36,7 @@ export default function Index({ categories }) {
                                                 className="rounded bg-darkslategray position-absolute w-100 h-100"
                                             >
                                                 <img
-                                                    src={`/storage/img/uploads/posts/${post.cover}`}
+                                                    src={`/storage/${post.cover}`}
                                                     alt=""
                                                     className={`
                                                      w-100 h-100 rounded object-fit-cover`}

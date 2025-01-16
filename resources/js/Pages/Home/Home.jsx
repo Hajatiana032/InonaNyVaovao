@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import Layout from "../../Components/Layout/Layout";
 import PostCard from "../../Components/PostCard/PostCard";
 
@@ -7,7 +7,7 @@ export default function Home({ categories, latests }) {
         <>
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-9">
+                    <div className="col-lg-8">
                         {categories.map((category) => (
                             <div
                                 key={category.id}
@@ -18,11 +18,11 @@ export default function Home({ categories, latests }) {
                                     <hr />
                                     {category.posts.map((post) => (
                                         <div
-                                            className="col-md-6 mb-3"
+                                            className="col-md-6 mb-3 m-auto"
                                             key={post.id}
                                         >
                                             <img
-                                                src={`/storage/img/uploads/posts/${post.cover}`}
+                                                src={`/storage/${post.cover}`}
                                                 alt=""
                                                 className="w-100 object-fit-cover"
                                                 height={250}
@@ -30,7 +30,32 @@ export default function Home({ categories, latests }) {
                                             <h4 className="mt-2 text-truncate">
                                                 {post.title}
                                             </h4>
-
+                                            <div className="d-flex mb-3">
+                                                <div className="small me-3">
+                                                    <i className="fa fa-calendar">
+                                                        &nbsp;
+                                                    </i>
+                                                    {new Date(
+                                                        post.created_at
+                                                    ).toLocaleDateString()}
+                                                </div>
+                                                <div className="small me-3">
+                                                    {post.likes.length}&nbsp;
+                                                    <i className="fa fa-thumbs-up">
+                                                        &nbsp;
+                                                    </i>
+                                                    J'aime
+                                                </div>
+                                                <div className="small me-3">
+                                                    {post.comments.length}&nbsp;
+                                                    <i className="fa fa-thumbs-up">
+                                                        &nbsp;
+                                                    </i>
+                                                    Commentaire
+                                                    {post.comments.length > 1 &&
+                                                        "s"}
+                                                </div>
+                                            </div>
                                             <p style={{ height: 100 }}>
                                                 {post.excerpt}
                                             </p>
@@ -48,13 +73,16 @@ export default function Home({ categories, latests }) {
                             </div>
                         ))}
                     </div>
-                    <div className="col-lg-3 d-none d-lg-block">
+                    <div className="col-lg-4 d-none d-lg-block">
                         <h3 className="mt-3 fw-bold">Articles récents</h3>
                         {latests.map((latest) => (
                             <div key={latest.id} className="mb-2">
                                 <PostCard
                                     key={latest.key}
                                     title={latest.title}
+                                    date={latest.created_at}
+                                    likes={latest.likes.length}
+                                    comments={latest.comments.length}
                                     cover={latest.cover}
                                     excerpt={latest.excerpt}
                                     slug={latest.slug}

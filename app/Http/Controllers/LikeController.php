@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\Like;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
-class CategoryController extends
-Controller
+class LikeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Category/Index', ['categories' => Category::with(['posts' => fn($query) => $query->limit(1)])->latest()->get()]);
+        //
     }
 
     /**
@@ -37,20 +34,15 @@ Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Like $like)
     {
-        return Inertia::render('Category/Show', [
-            'category' => $category,
-            'posts' => Post::query()->where('category_id', '=', $category->id)
-                ->with(['likes', 'comments'])
-                ->latest()->get()
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Like $like)
     {
         //
     }
@@ -58,7 +50,7 @@ Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Like $like)
     {
         //
     }
@@ -66,7 +58,7 @@ Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Like $like)
     {
         //
     }

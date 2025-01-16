@@ -11,7 +11,7 @@ class Category extends Model
     use HasFactory;
 
     /**
-     * Get the posts for the blog category
+     * Get the attributes for all posts
      *
      * @return HasMany
      */

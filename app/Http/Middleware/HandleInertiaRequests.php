@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Models\Category;
+use App\Models\Like;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -37,7 +39,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            'latestCategories' => Category::latest()->get()
+            'latestCategories' => Category::latest()->get(),
         ]);
     }
 }
